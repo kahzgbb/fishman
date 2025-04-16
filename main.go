@@ -79,6 +79,8 @@ func main() {
 	})
 
 	progress(100)
+	fmt.Println("\nExit")
+	fmt.Scanln()
 }
 
 func getExecutionsFromPrefetch(now time.Time) map[string]time.Time {
