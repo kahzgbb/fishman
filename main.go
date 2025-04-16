@@ -72,15 +72,17 @@ func main() {
 		exe, execTime := key.(string), value.(time.Time)
 		if !executableExists(exe) {
 			minAgo := int(now.Sub(execTime).Minutes())
-			color.Red.Printf("%s (Executado em %s) Deleted (%dm ago)\n",
+			color.Red.Printf("%s (Executed in %s) Deleted (%dm ago)\n",
 				exe, execTime.Format("2006-01-02 15:04:05"), minAgo)
 		}
 		return true
 	})
 
-	progress(100)
 	fmt.Println("\nExit")
-	fmt.Scanln()
+	var input string
+	for input == "" {
+		fmt.Scanln(&input)
+	}
 }
 
 func getExecutionsFromPrefetch(now time.Time) map[string]time.Time {
