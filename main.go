@@ -1,11 +1,13 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"sync"
 	"time"
@@ -19,8 +21,14 @@ const (
 )
 
 func main() {
+	if !isAdmin() {
+		color.Red.Println("Please run this program as Administrator.")
+		bufio.NewReader(os.Stdin).ReadBytes('\n')
+		return
+	}
 	clearScreen()
-	color.Red.Println("}<)))*>  <---\n")
+	color.Red.Println("  		}<)))*>  FishMan  <*(((>{\n")
+	color.Red.Println("		Made by yfantabw_ [ github.com/kahzgbb ]")
 	progress(0)
 
 	var wg sync.WaitGroup
@@ -72,7 +80,7 @@ func main() {
 		exe, execTime := key.(string), value.(time.Time)
 		if !executableExists(exe) {
 			minAgo := int(now.Sub(execTime).Minutes())
-			color.Red.Printf("%s (Executed in %s) Deleted (%dm ago)\n",
+			color.Red.Printf("	[ - ] %s (Executed in %s) Deleted (%dm ago)\n",
 				exe, execTime.Format("2006-01-02 15:04:05"), minAgo)
 		}
 		return true
@@ -212,6 +220,15 @@ func clearScreen() {
 	cmd := exec.Command("cmd", "/c", "cls")
 	cmd.Stdout = os.Stdout
 	_ = cmd.Run()
+}
+
+func isAdmin() bool {
+	if runtime.GOOS == "windows" {
+		cmd := exec.Command("net", "session")
+		err := cmd.Run()
+		return err == nil
+	}
+	return os.Geteuid() == 0
 }
 
 func progress(p int) {
