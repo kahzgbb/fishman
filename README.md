@@ -22,6 +22,12 @@ C:\Windows\AppCompat\Programs\Amcache.hve
 
 - Amcache is used to compare and obtain the file execution date.
 <br></br>
+## ⚙ Requirements
+
+- Windows 10+
+- Disable Windows Defender (or the antivirus if it blocks the program)
+- Run the program as administrator
+<br></br>
 ## ⚠ Disclaimer
 
 Some detections may be false (there may be a small chance), but most are true and if anything happens, just check the found file.
