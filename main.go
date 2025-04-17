@@ -27,8 +27,8 @@ func main() {
 		return
 	}
 	clearScreen()
-	color.Red.Println("  		}<)))*>  FishMan  <*(((>{\n")
-	color.Red.Println("		Made by yfantabw_ [ github.com/kahzgbb ]")
+	color.Red.Println("}<)))*>  FishMan  <*(((>{\n")
+	color.Red.Println("Made by yfantabw_ [ github.com/kahzgbb ]")
 	progress(0)
 
 	var wg sync.WaitGroup
@@ -80,7 +80,7 @@ func main() {
 		exe, execTime := key.(string), value.(time.Time)
 		if !executableExists(exe) {
 			minAgo := int(now.Sub(execTime).Minutes())
-			color.Red.Printf("	[ - ] %s (Executed in %s) Deleted (%dm ago)\n",
+			color.Red.Printf("[ - ] %s (Executed in %s) Deleted (%dm ago)\n",
 				exe, execTime.Format("2006-01-02 15:04:05"), minAgo)
 		}
 		return true
